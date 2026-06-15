@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use LGAgent in your research, please cite this software and the accompanying paper."
+title: "LGAgent: A Structured and Rule-Guided Multi-Agent Framework for Interpretable Legal Reasoning"
+type: software
+version: 0.1.0
+date-released: 2026-06-15
+repository-code: "https://github.com/AKAFX/LGAgent"
+license: Apache-2.0
+authors:
+  - family-names: Feng
+    given-names: Xin
+  - family-names: Liu
+    given-names: Haoming
+  - family-names: Feng
+    given-names: Manjia
+  - family-names: Shu
+    given-names: Feng
+  - family-names: Feng
+    given-names: Yi

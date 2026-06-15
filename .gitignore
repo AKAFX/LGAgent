@@ -1,0 +1,53 @@
+# macOS system files
+.DS_Store
+
+# Python cache and temporary files
+__pycache__/
+*.pyc
+*.npy
+*.index
+
+# VSCode editor configuration
+.vscode/
+
+# Runtime and download caches
+.infinity_cache/
+pretrained_models/
+embedding/
+index/
+output/
+logs/
+test/
+corpora/
+data/chat_sessions/
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Local research data and draft artifacts
+data/**/*.json
+data/**/*.jsonl
+data/**/*.xlsx
+司法考试/
+绘图代码/
+详细结果已保存到：/
+*.pdf
+
+# Keep the small, reproducible examples published with the repository
+!data/Ability_sample_100.jsonl
+!data/sample_single_legal.jsonl
+
+# Local IDE and virtual environments
+.venv/
+
+# Example configuration files
+examples/parameter/*.yaml
+examples/server/*.yaml
+!examples/parameter/legal2_rag_parameter.yaml
+
+# Server configuration files for each server module
+servers/*/server.yaml
+
+# Python package metadata
+src/*.egg-info/

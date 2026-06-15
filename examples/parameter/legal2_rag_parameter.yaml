@@ -1,0 +1,105 @@
+benchmark:
+  benchmark:
+    key_map:
+      gt_ls: golden_answers
+      q_ls: question
+    limit: 200
+    name: nq
+    path: data/Ability_merged_500.jsonl
+    seed: 42
+    shuffle: false
+custom: {}
+evaluation:
+  metrics:
+  - acc
+  - f1
+  - em
+  - coverem
+  - stringem
+  - rouge-1
+  - rouge-2
+  - rouge-l
+  save_path: output/evaluate_results.json
+generation:
+  backend: openai
+  backend_configs:
+    hf:
+      batch_size: 8
+      gpu_ids: 0
+      model_name_or_path: openbmb/MiniCPM4-8B
+      trust_remote_code: true
+    openai:
+      api_key: ''  # 如果使用API key池，这里可以为空；否则请填入你的API key
+      base_delay: 1.0
+      base_url: https://api.zhizengzeng.com/v1  # 智增增API地址，可根据实际情况修改
+      concurrency: 8
+      model_name: deepseek-v3 # 律师B使用的模型名，应与legal_multi_agent_eval2.py中的EVAL_MODEL一致
+      retries: 3
+    vllm:
+      dtype: auto
+      gpu_ids: 0
+      gpu_memory_utilization: 0.9
+      model_name_or_path: openbmb/MiniCPM4-8B
+      trust_remote_code: true
+  sampling_params:
+    chat_template_kwargs:
+      enable_thinking: false
+    max_tokens: 2048
+    temperature: 0.7
+    top_p: 0.8
+  system_prompt: ''
+prompt:
+  template: prompt/qa_boxed_single_choice_simple.jinja
+retriever:
+  backend: sentence_transformers
+  backend_configs:
+    bm25:
+      lang: en
+      save_path: index/bm25
+    infinity:
+      bettertransformer: false
+      model_warmup: false
+      pooling_method: auto
+      trust_remote_code: true
+    openai:
+      api_key: ''
+      base_url: https://api.openai.com/v1
+      model_name: text-embedding-3-small
+    sentence_transformers:
+      sentence_transformers_encode:
+        encode_chunk_size: 10000
+        normalize_embeddings: false
+        psg_prompt_name: document
+        psg_task: null
+        q_prompt_name: query
+        q_task: null
+      trust_remote_code: true
+  batch_size: 16
+  corpus_path: data/corpus_example.jsonl
+  embedding_path: embedding/embedding.npy
+  gpu_ids: 0
+  index_backend: faiss
+  index_backend_configs:
+    faiss:
+      index_chunk_size: 50000
+      index_path: index/index.index
+      index_use_gpu: true
+    milvus:
+      collection_name: ultrarag_embeddings
+      id_field_name: id
+      index_chunk_size: 50000
+      index_params:
+        index_type: AUTOINDEX
+        metric_type: IP
+      metric_type: IP
+      search_params:
+        metric_type: IP
+        params: {}
+      token: null
+      uri: index/milvus_demo.db
+      vector_field_name: vector
+  is_multimodal: false
+  model_name_or_path: openbmb/MiniCPM-Embedding-Light
+  overwrite: false
+  query_instruction: ''
+  top_k: 5
