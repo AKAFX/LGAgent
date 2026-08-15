@@ -29,6 +29,9 @@ data/chat_sessions/
 data/**/*.json
 data/**/*.jsonl
 data/**/*.xlsx
+!data/**/*.json
+!data/**/*.jsonl
+!data/**/*.xlsx
 司法考试/
 绘图代码/
 详细结果已保存到：/
